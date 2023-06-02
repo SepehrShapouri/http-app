@@ -30,7 +30,7 @@ const NewComment = () => {
         <span>
           <label for="body">body</label>
           <input
-            type="text"
+            type="textarea"
             defaultValue={body}
             onChange={changeHandler}
             id="body"
