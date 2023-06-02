@@ -7,12 +7,21 @@ import axios, { Axios } from "axios";
 const App = () => {
   const [comment, setComment] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/comments")
-      .then((res) => setComment(res.data.slice(0, 5)))
-      .catch((res) => console.log(res));
+    const getComments = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://jsonplaceholder.typicode.com/comments"
+        );
+        setComment(data.slice(0, 4));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getComments()
   }, []);
+
   const selectedCommentHandler = (id) => {
     setSelectedId(id);
   };
