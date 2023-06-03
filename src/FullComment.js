@@ -1,5 +1,6 @@
+import { useEffect } from "react";
+import axios from "axios";
 const FullComment = ({commentId}) => {
-  console.log(commentId)
   return (
     <div className="fullcomment">
       <p>name</p>
