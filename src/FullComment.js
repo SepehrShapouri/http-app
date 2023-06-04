@@ -3,23 +3,25 @@ import axios from "axios";
 const FullComment = ({ commentId }) => {
   const [fullComment, setFullComment] = useState(null);
   useEffect(() => {
-    if(commentId){
+    if (commentId) {
       axios
-      .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
-      .then(res => setFullComment(res.data))
-      .catch();
+        .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
+        .then((res) => setFullComment(res.data))
+        .catch();
     }
   }, [commentId]);
 
-  if (!commentId)
-    return <p className="selectcomment">Please select a comment!</p>;
-  return (
-    <div className="fullcomment">
-      <p>{fullComment.name}</p>
-      <p>{fullComment.email}</p>
-      <p>{fullComment.body}</p>
-    </div>
-  );
+  let commentDetail = <p className="selectcomment">Please select a comment!</p>;
+  if (commentId) commentDetail = <p className="selectcomment">Loading...</p>;
+  if (fullComment)
+    commentDetail = (
+      <div className="fullcomment">
+        <p className="name">{fullComment.name}</p>
+        <p className="email">{fullComment.email}</p>
+        <p className="body">{fullComment.body}</p>
+      </div>
+    );
+  return commentDetail;
 };
 
 export default FullComment;

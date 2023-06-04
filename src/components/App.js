@@ -19,7 +19,7 @@ const App = () => {
         console.log(error);
       }
     };
-    getComments()
+    getComments();
   }, []);
 
   const selectedCommentHandler = (id) => {

@@ -68,10 +68,20 @@ span {
   border: none;
   cursor: pointer;
 }
-.selectcomment{
+.selectcomment {
   color: #075985;
   background-color: #e0f2fe;
   padding: 2rem;
   text-align: center;
   border-radius: 10px;
+}
+.name {
+  font-weight: bold;
+  font-size: 12px;
+  margin-top: -1rem;
+}
+.body {
+  width: 90%;
+  font-size: 12px;
+  text-align: center;
 }
