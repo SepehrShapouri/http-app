@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import axios from "axios";
-const FullComment = ({commentId}) => {
+const FullComment = ({ commentId }) => {
+  if (!commentId)
+    return <p className="selectcomment">Please select a comment!</p>;
   return (
     <div className="fullcomment">
       <p>name</p>

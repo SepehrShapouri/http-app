@@ -10,7 +10,7 @@ const NewComment = () => {
     <section className="newcomment">
       <form onSubmit={submitHandler} className="commentform">
         <span>
-          <label for="name">name</label>
+          <label htmlFor="name">name</label>
           <input
             type="text"
             defaultValue={name}
@@ -19,7 +19,7 @@ const NewComment = () => {
           />
         </span>
         <span>
-          <label for="email">email</label>
+          <label htmlFor="email">email</label>
           <input
             type="text"
             defaultValue={email}
@@ -28,7 +28,7 @@ const NewComment = () => {
           />
         </span>
         <span>
-          <label for="body">body</label>
+          <label htmlFor="body">body</label>
           <input
             type="textarea"
             defaultValue={body}
