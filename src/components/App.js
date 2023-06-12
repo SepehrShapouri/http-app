@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Comment from "./Comment";
-import FullComment from "../FullComment";
+import FullComment from "./FullComment";
 import NewComment from "./NewComment";
 import axios, { Axios } from "axios";
 const App = () => {
@@ -25,6 +25,10 @@ const App = () => {
   const selectedCommentHandler = (id) => {
     setSelectedId(id);
   };
+  const deleteHandler = (e)=>{
+    axios.delete(`https://jsonplaceholder.typicode.com/comments/${selectedId}`).then(res=>{
+    }).catch()
+  }
   return (
     <section className="app">
       <div className="App">
@@ -42,7 +46,7 @@ const App = () => {
           <p>Loading...</p>
         )}
       </div>
-      <FullComment commentId={selectedId} />
+      <FullComment commentId={selectedId} deleteHandler={deleteHandler}/>
       <NewComment />
     </section>
   );

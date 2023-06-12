@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-const FullComment = ({ commentId }) => {
+const FullComment = ({ commentId,deleteHandler}) => {
   const [fullComment, setFullComment] = useState(null);
   useEffect(() => {
     if (commentId) {
@@ -19,6 +19,7 @@ const FullComment = ({ commentId }) => {
         <p className="name">{fullComment.name}</p>
         <p className="email">{fullComment.email}</p>
         <p className="body">{fullComment.body}</p>
+        <button onClick={deleteHandler} className="deletebtn">Delete</button>
       </div>
     );
   return commentDetail;
