@@ -5,7 +5,7 @@ const FullComment = ({ commentId,deleteHandler}) => {
   useEffect(() => {
     if (commentId) {
       axios
-        .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
+        .get(`http://localhost:3020/comments/${commentId}`)
         .then((res) => setFullComment(res.data))
         .catch();
     }

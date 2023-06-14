@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-const NewComment = () => {
+const NewComment = ({newCommentBtn}) => {
   const [comment, setComment] = useState({
     name: "",
     email: "",
@@ -10,19 +10,10 @@ const NewComment = () => {
     const { id, value } = e.target;
     setComment({ ...comment, [id]: value });
   };
-  const submitHandler = (e) => {
-    e.preventDefault();
-    axios
-      .post("https://jsonplaceholder.typicode.com/comments", {
-        ...comment,
-        postId: 1,
-      })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-  };
+
   return (
     <section className="newcomment">
-      <form onSubmit={submitHandler} className="commentform">
+      <form onSubmit={(e)=>newCommentBtn(e,comment)} className="commentform">
         <span>
           <label htmlFor="name">name</label>
           <input type="text" onChange={handleInputChange} id="name" />

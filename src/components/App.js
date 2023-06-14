@@ -11,24 +11,35 @@ const App = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const { data } = await axios.get(
-          "https://jsonplaceholder.typicode.com/comments"
-        );
-        setComment(data.slice(0, 4));
+        const { data } = await axios.get("http://localhost:3020/comments");
+        setComment(data);
       } catch (error) {
         console.log(error);
       }
     };
     getComments();
   }, []);
-
+  const submitHandler = (e,comment) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3020/comments", {
+        ...comment,
+        postId: 1,
+      })
+      .then((res) => axios.get("http://localhost:3020/comments"))
+      .then(res=>setComment(res.data))
+      .catch((err) => console.log(err));
+  };
   const selectedCommentHandler = (id) => {
     setSelectedId(id);
   };
-  const deleteHandler = (e)=>{
-    axios.delete(`https://jsonplaceholder.typicode.com/comments/${selectedId}`).then(res=>{
-    }).catch()
-  }
+  const deleteHandler = (e) => {
+    axios
+      .delete(`http://localhost:3020/comments/${selectedId}`)
+      .then((res) => axios.get("http://localhost:3020/comments"))
+      .then(res => setComment(res.data))
+      .catch();
+  };
   return (
     <section className="app">
       <div className="App">
@@ -46,8 +57,8 @@ const App = () => {
           <p>Loading...</p>
         )}
       </div>
-      <FullComment commentId={selectedId} deleteHandler={deleteHandler}/>
-      <NewComment />
+      <FullComment commentId={selectedId} deleteHandler={deleteHandler} />
+      <NewComment newCommentBtn={submitHandler} />
     </section>
   );
 };
