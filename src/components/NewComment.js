@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-const NewComment = ({newCommentBtn}) => {
+const NewComment = ({ newCommentBtn }) => {
   const [comment, setComment] = useState({
     name: "",
     email: "",
@@ -13,7 +13,7 @@ const NewComment = ({newCommentBtn}) => {
 
   return (
     <section className="newcomment">
-      <form onSubmit={(e)=>newCommentBtn(e,comment)} className="commentform">
+      <form onSubmit={(e) => newCommentBtn(e, comment)} className="commentform">
         <span>
           <label htmlFor="name">name</label>
           <input type="text" onChange={handleInputChange} id="name" />

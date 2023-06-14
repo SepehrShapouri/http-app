@@ -85,13 +85,13 @@ span {
   font-size: 12px;
   text-align: center;
 }
-.newcomment input{
-  padding:  4px 8px;
+.newcomment input {
+  padding: 4px 8px;
   border-radius: 5px;
   border: none;
   outline: none;
 }
-.deletebtn{
+.deletebtn {
   all: unset;
   border: 1px solid red;
   padding: 0.5rem 1rem;
