@@ -1,6 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
-const NewComment = ({ newCommentBtn }) => {
+import { postComments } from "../services/postComments";
+import { getAllComments } from "../services/getAllComments";
+const NewComment = ({ setComments }) => {
   const [comment, setComment] = useState({
     name: "",
     email: "",
@@ -10,10 +11,19 @@ const NewComment = ({ newCommentBtn }) => {
     const { id, value } = e.target;
     setComment({ ...comment, [id]: value });
   };
-
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      await postComments({ ...comment, postId: 1 });
+      const { data } = await getAllComments();
+      setComments(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <section className="newcomment">
-      <form onSubmit={(e) => newCommentBtn(e, comment)} className="commentform">
+      <form onSubmit={submitHandler} className="commentform">
         <span>
           <label htmlFor="name">name</label>
           <input type="text" onChange={handleInputChange} id="name" />

@@ -3,8 +3,8 @@ import "./App.css";
 import Comment from "./Comment";
 import FullComment from "./FullComment";
 import NewComment from "./NewComment";
-import axios, { Axios } from "axios";
-import { toast } from 'react-toastify';
+import { getAllComments } from "../services/getAllComments";
+import { toast } from "react-toastify";
 const Discussion = () => {
   const [comment, setComment] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
@@ -13,7 +13,7 @@ const Discussion = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3020/comments");
+        const { data } = await getAllComments();
         setComment(data);
       } catch (error) {
         console.log(error);
@@ -22,31 +22,16 @@ const Discussion = () => {
     };
     getComments();
   }, []);
-  const submitHandler = (e, comment) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:3020/comments", {
-        ...comment,
-        postId: 1,
-      })
-      .then((res) => axios.get("http://localhost:3020/comments"))
-      .then((res) => setComment(res.data))
-      .catch((err) => console.log(err));
-  };
+
   const selectedCommentHandler = (id) => {
     setSelectedId(id);
   };
-  const deleteHandler = (e) => {
-    axios
-      .delete(`http://localhost:3020/comments/${selectedId}`)
-      .then((res) => axios.get("http://localhost:3020/comments"))
-      .then((res) => setComment(res.data))
-      .catch();
-  };
   const renderComments = () => {
     let renderedValue = <p>Loading...</p>;
-    if (error) {renderedValue = <p>Fetching data failed!</p>;
-  toast.error("hi")}
+    if (error) {
+      renderedValue = <p>Fetching data failed!</p>;
+      toast.error("hi");
+    }
     if (comment && !error) {
       renderedValue = comment.map((c) => (
         <Comment
@@ -63,8 +48,12 @@ const Discussion = () => {
   return (
     <section className="app">
       <div className="App">{renderComments()}</div>
-      <FullComment commentId={selectedId} deleteHandler={deleteHandler} />
-      <NewComment newCommentBtn={submitHandler} />
+      <FullComment
+        setComments={setComment}
+        commentId={selectedId}
+        setSelectedId={setSelectedId}
+      />
+      <NewComment setComments={setComment} />
     </section>
   );
 };
