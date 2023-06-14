@@ -7,6 +7,7 @@ import axios, { Axios } from "axios";
 const App = () => {
   const [comment, setComment] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  const [error,setError] = useState(false)
 
   useEffect(() => {
     const getComments = async () => {
@@ -15,6 +16,7 @@ const App = () => {
         setComment(data);
       } catch (error) {
         console.log(error);
+        setError(true)
       }
     };
     getComments();
@@ -40,22 +42,26 @@ const App = () => {
       .then(res => setComment(res.data))
       .catch();
   };
+  const renderComments = ()=>{
+    let renderedValue = <p>Loading...</p>
+    if(error) renderedValue = <p>Fetching data failed!</p>
+    if(comment && !error){
+     renderedValue =  comment.map((c) => (
+        <Comment
+          name={c.name}
+          email={c.email}
+          body={c.body}
+          key={c.id}
+          onClick={() => selectedCommentHandler(c.id)}
+        />
+      ))
+    }
+    return renderedValue
+  }
   return (
     <section className="app">
       <div className="App">
-        {comment ? (
-          comment.map((c) => (
-            <Comment
-              name={c.name}
-              email={c.email}
-              body={c.body}
-              key={c.id}
-              onClick={() => selectedCommentHandler(c.id)}
-            />
-          ))
-        ) : (
-          <p>Loading...</p>
-        )}
+        {renderComments()}
       </div>
       <FullComment commentId={selectedId} deleteHandler={deleteHandler} />
       <NewComment newCommentBtn={submitHandler} />
