@@ -4,7 +4,6 @@
   flex-wrap: wrap;
 }
 .app {
-  margin: 1rem;
 }
 .comment {
   background-color: #e0f2fe;
@@ -99,4 +98,31 @@ span {
   padding: 0.5rem 1rem;
   color: red;
   font-size: 10px;
+}
+ul{
+  background-color: #e0f2fe;
+  display: flex;
+}
+li{
+  margin:1rem;
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: #075985;
+font-weight:bold ;
+}
+footer{
+  background-color: #e0f2fe;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #075985;
+  position: absolute;
+  bottom: 0;
+}
+.active{
+color: rgb(81, 16, 155);
 }

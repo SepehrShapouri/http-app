@@ -53,7 +53,6 @@ const Discussion = () => {
         commentId={selectedId}
         setSelectedId={setSelectedId}
       />
-      <NewComment setComments={setComment} />
     </section>
   );
 };
