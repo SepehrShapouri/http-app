@@ -1,11 +1,12 @@
-import Discussion from "../components/Discussion";
+import Comments from "../components/Comments";
+import Discussion from "../components/Comments";
 
 const HomePage = () => {
-    return ( 
-        <>
-        <Discussion/>
-        </>
-     );
-}
- 
+  return (
+    <>
+      <Comments />
+    </>
+  );
+};
+
 export default HomePage;
