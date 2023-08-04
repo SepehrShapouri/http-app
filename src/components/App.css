@@ -3,8 +3,6 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
-.app {
-}
 .comment {
   background-color: #e0f2fe;
   color: #075985;
@@ -100,20 +98,20 @@ span {
   font-size: 10px;
   margin-bottom: 1rem;
 }
-ul{
+ul {
   background-color: #e0f2fe;
   display: flex;
 }
-li{
-  margin:1rem;
+li {
+  margin: 1rem;
   list-style: none;
 }
-a{
+a {
   text-decoration: none;
   color: #075985;
-font-weight:bold ;
+  font-weight: bold;
 }
-footer{
+footer {
   background-color: #e0f2fe;
   height: 50px;
   width: 100%;
@@ -124,6 +122,6 @@ footer{
   position: absolute;
   bottom: 0;
 }
-.active{
-color: rgb(81, 16, 155);
+.active {
+  color: rgb(81, 16, 155);
 }
